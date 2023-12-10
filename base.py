@@ -10,6 +10,7 @@ W_HEIGHT = 600
 color_set = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1), (1,1,1)]
 
 
+
 def write_pixel(x, y, color): #use color as a tuple, e.g. color = (1,1,1)
     glPointSize(2)
     glBegin(GL_POINTS)
