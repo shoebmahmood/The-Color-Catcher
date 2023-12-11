@@ -5,7 +5,7 @@ import random
 from time import time
 import time
 
-
+score=0
 W_WIDTH = 800
 W_HEIGHT = 600
 
@@ -135,6 +135,97 @@ def mid_circle(cx, cy, radius, color):
         x = x + 1
         circ_point(x, y, cx, cy)
     glEnd()
+
+def draw_score():
+    global score  
+
+    # Define the position for the score display
+    x = 10
+    y = 570
+
+    # Draw each digit of the score as a line
+    if score == 0:
+            draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+            draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+            draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+            draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
+            draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+            draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+            # draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+    if score == 1:
+            #draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+            #draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+            draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+            #draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
+            draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+            #draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+            #draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+    if score == 2:
+            draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+            draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+            #draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+            #draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
+            draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+            draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+            draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+    if score == 3:
+            draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+            #draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+            draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+            #draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
+            draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+            draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+            draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+    if score == 4:
+            #draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+            #draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+            draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+            draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
+            draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+            #draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+            draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+    if score == 5:
+            draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+            #draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+            draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+            draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
+            #draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+            draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+            draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+    if score == 6:
+            draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+            draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+            draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+            draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
+            #draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+            draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+            draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+    if score == 7:
+            #draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+            #draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+            draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+            #draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
+            draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+            draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+            #draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+    if score == 8:
+            draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+            draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+            draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+            draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
+            draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+            draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+            draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+    if score == 9:
+            draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+            #draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+            draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+            draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
+            draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+            draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+            draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+    
+
 
 class AABB:
     x = 0
@@ -375,14 +466,14 @@ def shoot_bullet():
     bullet_x = catcher_x + catchbox.w / 2
     bullet_y = 30
 
-def keyboard_listener(key, x, y):
-    global catcher_color, catchbox
+# def keyboard_listener(key, x, y):
+#     global catcher_color, catchbox
 
-    if key == b' ':
-        # Change the catcher color randomly to another color
-        catcher_color = random.choice([color for color in color_set if color != catcher_color])
+#     if key == b' ':
+#         # Change the catcher color randomly to another color
+#         catcher_color = random.choice([color for color in color_set if color != catcher_color])
 
-        # If catcher caught a square and its width increased, update the AABB
+#         # If catcher caught a square and its width increased, update the AABB
         
 
 
@@ -408,7 +499,13 @@ def special_key_listener(key, x, y):
 
 def mouse_click(button, state, x, y):
     global bullet_active, last_shoot_time
+    global catcher_color, catchbox
 
+    if button == GLUT_RIGHT_BUTTON and state == GLUT_DOWN:
+        # Change the catcher color randomly to another color
+        catcher_color = random.choice([color for color in color_set if color != catcher_color])
+
+        # If catcher caught a square and its width increased, update the AABB
     if button == GLUT_LEFT_BUTTON and state == GLUT_DOWN:
         # Shoot the bullet
         if not bullet_active:
@@ -441,6 +538,8 @@ def display():
 
         if ballbox.collides_with_bullet(bullet_x, bullet_y):
             if ball_color != catcher_color:
+                global score
+                score += 1
                 # Generate a random number between 1 and 100
                 rand_num = random.randint(1, 100)
 
@@ -503,13 +602,16 @@ def display():
                 ball_y = 630
                 ballbox.x = ball_x - 10
                 ballbox.y = ball_y - 10
+                global score
+                score += 1
+                
             else:
                 print("Game Over - Catcher collided with a ball of different color!")
                 game_over = True
 
         update_falling_diamonds(falling_diamonds)
         update_falling_squares(falling_squares)
-
+        draw_score()
         diamond_collision_handler()  # Check for collision with falling diamonds
          
 
@@ -530,7 +632,7 @@ def main():
 
     glutDisplayFunc(display)
     glutIdleFunc(animate)
-    glutKeyboardFunc(keyboard_listener)
+    #glutKeyboardFunc(keyboard_listener)
     glutSpecialFunc(special_key_listener)
     glutMouseFunc(mouse_click)  # Register the mouse click function
 
