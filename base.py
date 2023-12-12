@@ -749,7 +749,7 @@ def animate():
         ballbox.y -= 1
 
         if ball_y <= 0:
-            print("Game Over - Ball went beyond the lower boundary!")
+            print("Game Over - Ball went beyond the boundary!")
             game_over = True
 
         glutPostRedisplay()
