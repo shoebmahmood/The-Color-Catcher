@@ -5,10 +5,9 @@ import random
 from time import time
 import time
 
-score=0
 W_WIDTH = 800
 W_HEIGHT = 600
-
+score=0
 falling_diamonds = []
 falling_squares = [] 
 def write_pixel(x, y, color):  # use color as a tuple, e.g. color = (1,1,1)
@@ -151,45 +150,32 @@ def draw_score():
             draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
             draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
             draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
-            # draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+            
     if score == 1:
-            #draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
-            #draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
             draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
-            #draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
             draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
-            #draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
-            #draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+            
     if score == 2:
             draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
             draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
-            #draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
-            #draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
             draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
             draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
             draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
     if score == 3:
             draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
-            #draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
             draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
-            #draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
             draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
             draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
             draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
     if score == 4:
-            #draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
-            #draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
             draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
             draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
             draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
-            #draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
             draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
     if score == 5:
             draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
-            #draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
             draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
             draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
-            #draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
             draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
             draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
     if score == 6:
@@ -197,17 +183,12 @@ def draw_score():
             draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
             draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
             draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
-            #draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
             draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
             draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
     if score == 7:
-            #draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
-            #draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
             draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
-            #draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
             draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
             draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
-            #draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
     if score == 8:
             draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
             draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
@@ -218,13 +199,123 @@ def draw_score():
             draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
     if score == 9:
             draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
-            #draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+            
             draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
             draw_line(x, y+10, x, y+20, (1, 1, 1))#top left
             draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
             draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
             draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+    if score == 10:
+        
+        draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+       
+        draw_line(x + 20, y, x + 30, y, (1, 1, 1))  # bottom
+        draw_line(x + 20, y, x + 20, y + 20, (1, 1, 1))  # leftmost line
+        draw_line(x + 30, y, x + 30, y + 20, (1, 1, 1))  # rightmost line
+        draw_line(x + 20, y + 20, x + 30, y + 20, (1, 1, 1))  # top
+    if score == 11:
+        draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+
+        draw_line(x+20, y, x+20, y+20, (1, 1, 1))  # vertical line
+        draw_line(x + 10, y, x + 10, y + 20, (1, 1, 1))  # leftmost line
+    if score == 12:
+        draw_line(x+10,  y, x+10, y+10, (1, 1, 1))  # bottom right
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))  # top right
+
+        draw_line(x + 20, y, x + 30, y, (1, 1, 1))  # bottom
+        draw_line(x + 20, y, x + 20, y + 10, (1, 1, 1))  # bottom left
+        draw_line(x + 30, y + 10, x + 30, y + 20, (1, 1, 1))  # top right
+        draw_line(x + 20, y + 20, x + 30, y + 20, (1, 1, 1))  # top
+        draw_line(x + 20, y + 10, x + 30, y + 10, (1, 1, 1))  # middle
+    if score == 13:
+        draw_line(x + 10, y, x + 10, y + 10, (1, 1, 1))  # bottom right
+        draw_line(x + 10, y + 10, x + 10, y + 20, (1, 1, 1))  # top right
+
+        draw_line(x + 20, y, x + 30, y, (1, 1, 1))  # bottom
+        draw_line(x + 20, y + 10, x + 30, y + 10, (1, 1, 1))  # middle
+        draw_line(x + 20, y + 20, x + 30, y + 20, (1, 1, 1))  # top
+        draw_line(x + 30, y, x + 30, y + 20, (1, 1, 1))  # right
+    if score == 14:
+        # Draw the "1"
+        draw_line(x + 10, y, x + 10, y + 10, (1, 1, 1))  # bottom right
+        draw_line(x + 10, y + 10, x + 10, y + 20, (1, 1, 1))  # top right
+
+        draw_line(x + 30, y, x + 30, y + 10, (1, 1, 1))  # bottom right
+        draw_line(x + 20, y + 10, x + 20, y + 20, (1, 1, 1))  # top left
+        draw_line(x + 30, y + 10, x + 30, y + 20, (1, 1, 1))  # top right
+        draw_line(x + 20, y + 10, x + 30, y + 10, (1, 1, 1))  # middle
+    if score == 15:
+        draw_line(x + 10, y, x + 10, y + 10, (1, 1, 1))  # bottom right
+        draw_line(x + 10, y + 10, x + 10, y + 20, (1, 1, 1))  # top right
+
+        draw_line(x+20, y, x + 30, y, (1, 1, 1)) #bottom
+        draw_line(x+30,  y, x+30, y+10, (1, 1, 1))#bottom right
+        draw_line(x+20, y+10, x+20, y+20, (1, 1, 1))#top left 
+        draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
+        draw_line(x+20, y+10, x+30, y+10, (1, 1, 1))#middle
+    if score == 16:
+        draw_line(x + 10, y, x + 10, y + 10, (1, 1, 1))  # bottom right
+        draw_line(x + 10, y + 10, x + 10, y + 20, (1, 1, 1))  # top right
+
+        draw_line(x+20, y, x + 30, y, (1, 1, 1)) #bottom
+        draw_line(x+20, y, x+20, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+30,  y, x+30, y+10, (1, 1, 1))#bottom right
+        draw_line(x+20, y+10, x+20, y+20, (1, 1, 1))#top left
+        draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
+        draw_line(x+20, y+10, x+30, y+10, (1, 1, 1))#middle
+    if score == 17:
+        draw_line(x + 10, y, x + 10, y + 10, (1, 1, 1))  # bottom right
+        draw_line(x + 10, y + 10, x + 10, y + 20, (1, 1, 1))  # top right
+
+        draw_line(x+30,  y, x+30, y+10, (1, 1, 1))#bottom right
+        draw_line(x+30, y+10, x+30, y+20, (1, 1, 1))#top right
+        draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
+    if score == 18:
+        draw_line(x + 10, y, x + 10, y + 10, (1, 1, 1))  # bottom right
+        draw_line(x + 10, y + 10, x + 10, y + 20, (1, 1, 1))  # top right
+
+        draw_line(x+20, y, x + 30, y, (1, 1, 1)) #bottom
+        draw_line(x+20, y, x+20, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+30,  y, x+30, y+10, (1, 1, 1))#bottom right
+        draw_line(x+20, y+10, x+20, y+20, (1, 1, 1))#top left
+        draw_line(x+30, y+10, x+30, y+20, (1, 1, 1))#top right
+        draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
+        draw_line(x+20, y+10, x+30, y+10, (1, 1, 1))#middle
     
+    if score == 19:
+        draw_line(x + 10, y, x + 10, y + 10, (1, 1, 1))  # bottom right
+        draw_line(x + 10, y + 10, x + 10, y + 20, (1, 1, 1))  # top right
+
+        draw_line(x+20, y, x + 30, y, (1, 1, 1)) #bottom
+        draw_line(x+30,  y, x+30, y+10, (1, 1, 1))#bottom right
+        draw_line(x+20, y+10, x+20, y+20, (1, 1, 1))#top left
+        draw_line(x+30, y+10, x+30, y+20, (1, 1, 1))#top right
+        draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
+        draw_line(x+20, y+10, x+30, y+10, (1, 1, 1))#middle
+    if score == 20:
+        draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+        draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+        draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+        draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+
+        draw_line(x+20, y, x + 30, y, (1, 1, 1)) #bottom
+        draw_line(x+20, y, x+20, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+30,  y, x+30, y+10, (1, 1, 1))#bottom right
+        draw_line(x+20, y+10, x+20, y+20, (1, 1, 1))#top left
+        draw_line(x+30, y+10, x+30, y+20, (1, 1, 1))#top right
+        draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
+     
+        
+
+
+
+
+        
+
+
 
 
 class AABB:
@@ -543,9 +634,9 @@ def display():
                 # Generate a random number between 1 and 100
                 rand_num = random.randint(1, 100)
 
-                if 1 <= rand_num <= 20:  # Adjust the threshold as needed
+                if 1 <= rand_num <= 30:  # Adjust the threshold as needed
                     falling_diamond(ball_x - 10, ball_y - 10, ball_color, falling_diamonds)
-                elif 20 < rand_num <= 40  :
+                elif 30 < rand_num <= 60  :
                     falling_square(ball_x - 10, ball_y - 10, ball_color, falling_squares)
 
                 # Reset the ball's position and color
