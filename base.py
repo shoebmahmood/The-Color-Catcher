@@ -557,14 +557,28 @@ def shoot_bullet():
     bullet_x = catcher_x + catchbox.w / 2
     bullet_y = 30
 
-# def keyboard_listener(key, x, y):
-#     global catcher_color, catchbox
+def restart_game():
+    global score, falling_diamonds, falling_squares
+    score = 0
+    falling_diamonds = []
+    falling_squares = []
+    global game_over
+    game_over=False
+    main()
+    display()
+    animate()
+    display.bullet_collision_handler()
+    display.diamond_collision_handler()
+    
+    
+def keyboard_listener(key, x, y):
+    global catcher_color, catchbox
 
-#     if key == b' ':
-#         # Change the catcher color randomly to another color
-#         catcher_color = random.choice([color for color in color_set if color != catcher_color])
+    if key == b' ':
+        # Change the catcher color randomly to another color
+        restart_game()
 
-#         # If catcher caught a square and its width increased, update the AABB
+        # If catcher caught a square and its width increased, update the AABB
         
 
 
@@ -723,7 +737,7 @@ def main():
 
     glutDisplayFunc(display)
     glutIdleFunc(animate)
-    #glutKeyboardFunc(keyboard_listener)
+    glutKeyboardFunc(keyboard_listener)
     glutSpecialFunc(special_key_listener)
     glutMouseFunc(mouse_click)  # Register the mouse click function
 
