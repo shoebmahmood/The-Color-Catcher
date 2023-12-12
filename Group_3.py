@@ -426,15 +426,6 @@ def draw_score():
         draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
         
 
-
-
-
-
-        
-
-
-
-
 class AABB:
     x = 0
     y = 0
