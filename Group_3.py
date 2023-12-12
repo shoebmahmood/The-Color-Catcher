@@ -2,8 +2,6 @@ from OpenGL.GL import *
 from OpenGL.GLUT import *
 from OpenGL.GLU import *
 import random
-from time import time
-import time
 
 W_WIDTH = 800
 W_HEIGHT = 600
@@ -431,7 +429,6 @@ class AABB:
     y = 0
     w = 0
     h = 0
-    instances = {} 
 
     def __init__(self, x, y, w, h):
         self.x, self.y, self.w, self.h = x, y, w, h
@@ -451,11 +448,6 @@ class AABB:
         return (self.x < bullet_x < self.x + self.w and
                 self.y < bullet_y < self.y + self.h)
     
-    def check_collision_with_catcher(x1, y1, x2, y2, catcher_box):
-        # Check for collision between the line and the catcher
-        line_box = AABB(min(x1, x2), min(y1, y2), abs(x2 - x1), abs(y2 - y1))
-        return line_box.collides_with(catcher_box)
-
     def collides_with_catcher(self, x, y, catcher_box):
         diamond_center_x = x
         diamond_center_y = y
@@ -479,33 +471,6 @@ class AABB:
                 return True
 
         return False
-    def bullet_collision_handler():
-        global ball_color, falling_diamonds, bullet_active, ball_x, ball_y
-
-        if ballbox.collides_with_bullet(bullet_x, bullet_y):
-            if ball_color != catcher_color:
-                
-                rand_num = random.randint(0, 100)
-
-                if rand_num % 2 == 0:
-                    diamond(ball_x - 10, ball_y - 10, ball_color, ball_y, falling_diamonds)
-                else:
-                   
-                    draw_square(ball_x - 10, ball_y - 10, ball_color)
-
-                
-                ball_color = random.choice(color_set)
-                ball_x = random.choice(spawnx)
-                ball_y = 630
-                ballbox.x = ball_x - 10
-                ballbox.y = ball_y - 10
-
-                
-                bullet_active = False
-            else:
-                bullet_active = False
-                print("Game Over - Bullet collided with a ball of the same color as the catcher!")
-                game_over = True
 
 color_set = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1), (1, 1, 1)]
 
@@ -543,20 +508,8 @@ def update_falling_diamonds(falling_diamonds):
     for diamond in falling_diamonds:
         draw_diamond(diamond['x'], diamond['y'], diamond['color'])
 
-        
-        if catchbox.collides_with(AABB(diamond['x'] - 20, diamond['y'], 40, 20)) and not catcher_caught_square_this_cycle:
-            print("Catcher caught a falling diamond!")
-            catchbox.increase_width(20)  
-            original_catcher_width = catchbox.w  
-            catcher_caught_square_this_cycle = True  
-
         diamond['y'] -= square_speed
 
-        
-        if not catchbox.collides_with(AABB(diamond['x'] - 20, diamond['y'], 40, 20)):
-            catcher_caught_square_this_cycle = False
-
-    
     falling_diamonds[:] = [diamond for diamond in falling_diamonds if diamond['y'] >= 0]
 
 
@@ -603,13 +556,11 @@ def update_falling_squares(falling_squares):
   
     falling_squares[:] = [square for square in falling_squares if square['y'] >= 0]
 
-
-
 game_over = False
-catcher_x = 350 #
+catcher_x = 350 
 catchbox = AABB(catcher_x, 10, 100, 20) 
 catcher_color = random.choice(color_set) 
-original_catcher_width = 60
+original_catcher_width = 100
 catcher_caught_square = False
 
 bullet_active = False
@@ -617,7 +568,6 @@ bullet_x = 0
 bullet_y = 0
 bullet_color = (1, 1, 1)
 bullet_duration = 0.1 
-last_shoot_time = time.time()
 
 ball_color = random.choice(color_set)
 spawnx = []  
@@ -637,7 +587,6 @@ def update_bullet():
 
     if bullet_y > W_HEIGHT:
         bullet_active = False
-        last_shoot_time = time.time()
 
 
 def shoot_bullet():
@@ -647,18 +596,6 @@ def shoot_bullet():
     bullet_x = catcher_x + catchbox.w / 2
     bullet_y = 30
 
-def restart_game():
-    global score, falling_diamonds, falling_squares
-    score = 0
-    falling_diamonds = []
-    falling_squares = []
-    global game_over
-    game_over=False
-    main()
-    display()
-    animate()
-    display.bullet_collision_handler()
-    display.diamond_collision_handler()
     
 def special_key_listener(key, x, y):
     global catcher_x, catchbox, original_catcher_width
@@ -675,31 +612,24 @@ def special_key_listener(key, x, y):
         else:
             catcher_x += 20
             catchbox.x += 20
-
-   
-
     glutPostRedisplay()
 
 def mouse_click(button, state, x, y):
-    global bullet_active, last_shoot_time
-    global catcher_color, catchbox
+    global catcher_color, catchbox, color_set, bullet_active
 
     if button == GLUT_RIGHT_BUTTON and state == GLUT_DOWN:
         
-        catcher_color = random.choice([color for color in color_set if color != catcher_color])
+        catcher_color = random.choice(color_set)
 
         
     if button == GLUT_LEFT_BUTTON and state == GLUT_DOWN:
     
         if not bullet_active:
             shoot_bullet()
-            last_shoot_time = time.time()
 
-dflag = False
-sFlag = False
 
 def animate():
-    global ball_x, ball_y, ball_color, ballbox, game_over, dflag, sFlag
+    global ball_x, ball_y, ball_color, ballbox, game_over
 
     if not game_over:
         ball_y -= 1
@@ -728,7 +658,7 @@ def display():
 
                 if 1 <= rand_num <= 30:  
                     falling_diamond(ball_x - 10, ball_y - 10, ball_color, falling_diamonds)
-                elif 30 < rand_num <= 60  :
+                elif 30 < rand_num <= 50  :
                     falling_square(ball_x - 10, ball_y - 10, ball_color, falling_squares)
 
                 
@@ -746,7 +676,7 @@ def display():
                 game_over = True
 
     def diamond_collision_handler():
-        global game_over
+        global game_over, color_set
 
         for falling_diamond in falling_diamonds:
             
@@ -772,14 +702,14 @@ def display():
 
         if ball_y < 0:
             if ball_color == catcher_color:
-                catcher_color = random.choice([color for color in color_set if color != catcher_color])
+                catcher_color = random.choice(color_set)
             else:
                 print("Game Over - Ball went beyond the boundary!")
                 game_over = True
 
         if catchbox.collides_with_catcher(ball_x, ball_y, catchbox):
             if ball_color == catcher_color:
-                catcher_color = random.choice([color for color in color_set if color != catcher_color])
+                catcher_color = random.choice(color_set)
                 ball_color = random.choice(color_set)
                 ball_x = random.choice(spawnx)
                 ball_y = 630
@@ -801,7 +731,6 @@ def display():
     glutSwapBuffers()
 
 def main():
-    global original_catcher_width 
 
     glutInit()
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
@@ -813,10 +742,7 @@ def main():
     glutIdleFunc(animate)
     
     glutSpecialFunc(special_key_listener)
-    glutMouseFunc(mouse_click) 
-
-    original_catcher_width = 60  
-    catchbox = AABB(catcher_x, 10, original_catcher_width, 10)  
+    glutMouseFunc(mouse_click)  
 
     glOrtho(0, W_WIDTH, 0, W_HEIGHT, -1, 1)
     glClearColor(0.0, 0.0, 0.0, 0.0)
