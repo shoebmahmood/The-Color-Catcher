@@ -10,7 +10,7 @@ W_HEIGHT = 600
 falling_diamonds = []
 falling_squares = [] 
 score=0
-def write_pixel(x, y, color):  # use color as a tuple, e.g. color = (1,1,1)
+def write_pixel(x, y, color): 
     glPointSize(2)
     glBegin(GL_POINTS)
     glColor3fv(color)
@@ -138,11 +138,8 @@ def mid_circle(cx, cy, radius, color):
 def draw_score():
     global score  
 
-    # Define the position for the score display
     x = 10
     y = 570
-
-    # Draw each digit of the score as a line
     if score == 0:
             draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
             draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
@@ -447,8 +444,6 @@ class AABB:
 
     def __init__(self, x, y, w, h):
         self.x, self.y, self.w, self.h = x, y, w, h
-        self.instance_id = id(self)
-        AABB.instances[self.instance_id] = self  # Store the instance in the dictionary
 
     def increase_width(self, amount):
         self.w += amount
@@ -479,7 +474,7 @@ class AABB:
         catcher_left = catcher_box.x
         catcher_right = catcher_box.x + catcher_box.w
 
-        # Check if any point of the diamond is close enough to the catcher's bounds
+        
         diamond_points = [
             (diamond_center_x, diamond_center_y -20),  # Top point
             (diamond_center_x - 20, diamond_center_y),  # Right point
@@ -498,31 +493,29 @@ class AABB:
 
         if ballbox.collides_with_bullet(bullet_x, bullet_y):
             if ball_color != catcher_color:
-                # Generate a random number between 0 and 100
+                
                 rand_num = random.randint(0, 100)
 
                 if rand_num % 2 == 0:
-                    # Draw a falling diamond at the location where the ball disappeared
                     diamond(ball_x - 10, ball_y - 10, ball_color, ball_y, falling_diamonds)
                 else:
-                    # Draw a falling square at the location where the ball disappeared
+                   
                     draw_square(ball_x - 10, ball_y - 10, ball_color)
 
-                # Reset the ball's position and color
+                
                 ball_color = random.choice(color_set)
                 ball_x = random.choice(spawnx)
                 ball_y = 630
                 ballbox.x = ball_x - 10
                 ballbox.y = ball_y - 10
 
-                # Deactivate the bullet
+                
                 bullet_active = False
             else:
                 bullet_active = False
                 print("Game Over - Bullet collided with a ball of the same color as the catcher!")
                 game_over = True
 
-# Predefined set of bright colors for convenience
 color_set = [(1, 0, 0), (0, 1, 0), (0, 0, 1), (1, 1, 0), (1, 0, 1), (0, 1, 1), (1, 1, 1)]
 
 def catcher(x, y, width, color):
@@ -536,8 +529,8 @@ def catcher(x, y, width, color):
     draw_line(blx, bly, brx, bry, color)
 
 def draw_diamond(x, y, color):
-    cx, cy = x + 50, y + 10  # Update the center of the diamond based on ball_y
-    size = 20  # Adjust the size of the diamond as needed
+    cx, cy = x + 50, y + 10  
+    size = 20  
 
     draw_line(cx, cy + size, cx + size / 2, cy, color)
     draw_line(cx + size / 2, cy, cx, cy - size, color)
@@ -559,20 +552,20 @@ def update_falling_diamonds(falling_diamonds):
     for diamond in falling_diamonds:
         draw_diamond(diamond['x'], diamond['y'], diamond['color'])
 
-        # Check for collision with the catcher
+        
         if catchbox.collides_with(AABB(diamond['x'] - 20, diamond['y'], 40, 20)) and not catcher_caught_square_this_cycle:
             print("Catcher caught a falling diamond!")
-            catchbox.increase_width(20)  # Increase the width permanently
-            original_catcher_width = catchbox.w  # Update the original catcher width
-            catcher_caught_square_this_cycle = True  # Set the flag to True
+            catchbox.increase_width(20)  
+            original_catcher_width = catchbox.w  
+            catcher_caught_square_this_cycle = True  
 
         diamond['y'] -= square_speed
 
-        # Reset the flag when the diamond is no longer colliding with the catcher
+        
         if not catchbox.collides_with(AABB(diamond['x'] - 20, diamond['y'], 40, 20)):
             catcher_caught_square_this_cycle = False
 
-    # Remove diamonds that have fallen below the lower boundary
+    
     falling_diamonds[:] = [diamond for diamond in falling_diamonds if diamond['y'] >= 0]
 
 
@@ -587,7 +580,7 @@ def draw_square(x, y, color):
     draw_line(urx, ury, brx, bry, color)
     draw_line(blx, bly, brx, bry, color)
 
-square_speed = 1  # You can adjust the speed of the square falling
+square_speed = 1 
 def falling_square(x, y, color, falling_squares):
     draw_square(x, y, color)
 
@@ -604,52 +597,39 @@ def update_falling_squares(falling_squares):
     for square in falling_squares:
         draw_square(square['x'], square['y'], square['color'])
 
-        # Check for collision with the catcher
         if catchbox.collides_with(AABB(square['x'], square['y'], 20, 20)) and not catcher_caught_square_this_cycle:
             print("Catcher caught a power-up!")
             print('increase width')
-            catchbox.increase_width(20)  # Increase the width permanently
-            original_catcher_width = catchbox.w  # Update the original catcher width
-            catcher_caught_square_this_cycle = True  # Set the flag to True
-
+            catchbox.increase_width(20)  
+            original_catcher_width = catchbox.w  
+            catcher_caught_square_this_cycle = True  
         square['y'] -= square_speed
 
-        # Reset the flag when the square is no longer colliding with the catcher
+        
         if not catchbox.collides_with(AABB(square['x'], square['y'], 20, 20)):
             catcher_caught_square_this_cycle = False
 
-    # Remove squares that have fallen below the lower boundary
+  
     falling_squares[:] = [square for square in falling_squares if square['y'] >= 0]
 
 
 
-#------------------------------------------------------------------------------------------------------------------------------#
-
-
-
-
-
 game_over = False
-
-
-
-catcher_x = 350 # Initial position of the catcher
-catchbox = AABB(catcher_x, 10, 100, 20) # AABB for the catcher
-catcher_color = random.choice(color_set) # Initial color of the catcher
+catcher_x = 350 #
+catchbox = AABB(catcher_x, 10, 100, 20) 
+catcher_color = random.choice(color_set) 
 original_catcher_width = 60
 catcher_caught_square = False
-
 
 bullet_active = False
 bullet_x = 0
 bullet_y = 0
 bullet_color = (1, 1, 1)
-bullet_duration = 0.1  # in seconds
+bullet_duration = 0.1 
 last_shoot_time = time.time()
 
-
 ball_color = random.choice(color_set)
-spawnx = []  # set of x values for the ball
+spawnx = []  
 for i in range(100):
     spawnx.append(random.randint(50, 750))
 
@@ -673,8 +653,6 @@ def shoot_bullet():
     global bullet_active, bullet_x, bullet_y, catcher_x, catchbox
 
     bullet_active = True
-
-    # Calculate the initial position of the bullet based on the updated catcher width
     bullet_x = catcher_x + catchbox.w / 2
     bullet_y = 30
 
@@ -691,18 +669,6 @@ def restart_game():
     display.bullet_collision_handler()
     display.diamond_collision_handler()
     
-    
-def keyboard_listener(key, x, y):
-    global catcher_color, catchbox
-
-    if key == b' ':
-        # Change the catcher color randomly to another color
-        restart_game()
-
-        # If catcher caught a square and its width increased, update the AABB
-        
-
-
 def special_key_listener(key, x, y):
     global catcher_x, catchbox, original_catcher_width
 
@@ -719,7 +685,7 @@ def special_key_listener(key, x, y):
             catcher_x += 20
             catchbox.x += 20
 
-    # If catcher caught a square and its width increased, update the AABB
+   
 
     glutPostRedisplay()
 
@@ -728,12 +694,12 @@ def mouse_click(button, state, x, y):
     global catcher_color, catchbox
 
     if button == GLUT_RIGHT_BUTTON and state == GLUT_DOWN:
-        # Change the catcher color randomly to another color
+        
         catcher_color = random.choice([color for color in color_set if color != catcher_color])
 
-        # If catcher caught a square and its width increased, update the AABB
+        
     if button == GLUT_LEFT_BUTTON and state == GLUT_DOWN:
-        # Shoot the bullet
+    
         if not bullet_active:
             shoot_bullet()
             last_shoot_time = time.time()
@@ -757,7 +723,7 @@ def animate():
 def display():
     global game_over, catcher_color, ball_color, catcher_x, catcher_color, bullet_active, bullet_x, bullet_y, bullet_color, ball_x, ball_y, dflag, sFlag
 
-    global falling_diamonds, falling_squares, original_catcher_width, catcher_caught_square  # Add the flag to the global variables
+    global falling_diamonds, falling_squares, original_catcher_width, catcher_caught_square  
 
     def bullet_collision_handler():
         global ball_color, falling_diamonds, falling_squares, bullet_active, ball_x, ball_y, game_over
@@ -766,22 +732,22 @@ def display():
             if ball_color != catcher_color:
                 global score
                 score += 1
-                # Generate a random number between 1 and 100
+                
                 rand_num = random.randint(1, 100)
 
-                if 1 <= rand_num <= 30:  # Adjust the threshold as needed
+                if 1 <= rand_num <= 30:  
                     falling_diamond(ball_x - 10, ball_y - 10, ball_color, falling_diamonds)
                 elif 30 < rand_num <= 60  :
                     falling_square(ball_x - 10, ball_y - 10, ball_color, falling_squares)
 
-                # Reset the ball's position and color
+                
                 ball_color = random.choice(color_set)
                 ball_x = random.choice(spawnx)
                 ball_y = 630
                 ballbox.x = ball_x - 10
                 ballbox.y = ball_y - 10
 
-                # Deactivate the bullet
+               
                 bullet_active = False
             else:
                 bullet_active = False
@@ -792,12 +758,12 @@ def display():
         global game_over
 
         for falling_diamond in falling_diamonds:
-            # Check for collision with the catcher
+            
             if catchbox.collides_with(AABB(falling_diamond['x'] - 20, falling_diamond['y'], 40, 20)):
                 print("Game Over - Catcher caught a falling bug!")
                 game_over = True
 
-        # Remove diamonds that have fallen below the lower boundary
+        
         falling_diamonds[:] = [diamond for diamond in falling_diamonds if diamond['y'] >= 0]
 
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
@@ -838,17 +804,13 @@ def display():
         update_falling_diamonds(falling_diamonds)
         update_falling_squares(falling_squares)
         draw_score()
-        diamond_collision_handler()  # Check for collision with falling diamonds
+        diamond_collision_handler()  
          
 
     glutSwapBuffers()
 
-
-
-# Rest of the code remains unchanged.
-
 def main():
-    global original_catcher_width  # Add this line to make the variable global
+    global original_catcher_width 
 
     glutInit()
     glutInitDisplayMode(GLUT_RGBA | GLUT_DOUBLE | GLUT_DEPTH)
@@ -858,12 +820,12 @@ def main():
 
     glutDisplayFunc(display)
     glutIdleFunc(animate)
-    glutKeyboardFunc(keyboard_listener)
+    
     glutSpecialFunc(special_key_listener)
-    glutMouseFunc(mouse_click)  # Register the mouse click function
+    glutMouseFunc(mouse_click) 
 
-    original_catcher_width = 60  # Set the initial value for the original catcher width
-    catchbox = AABB(catcher_x, 10, original_catcher_width, 10)  # Update the catcher's AABB with the original width
+    original_catcher_width = 60  
+    catchbox = AABB(catcher_x, 10, original_catcher_width, 10)  
 
     glOrtho(0, W_WIDTH, 0, W_HEIGHT, -1, 1)
     glClearColor(0.0, 0.0, 0.0, 0.0)
