@@ -7,9 +7,9 @@ import time
 
 W_WIDTH = 800
 W_HEIGHT = 600
-score=0
 falling_diamonds = []
 falling_squares = [] 
+score=0
 def write_pixel(x, y, color):  # use color as a tuple, e.g. color = (1,1,1)
     glPointSize(2)
     glBegin(GL_POINTS)
@@ -307,8 +307,128 @@ def draw_score():
         draw_line(x+20, y+10, x+20, y+20, (1, 1, 1))#top left
         draw_line(x+30, y+10, x+30, y+20, (1, 1, 1))#top right
         draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
-     
+    if score == 21:
+        draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+        draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+        draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+        draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+
+        draw_line(x+20, y, x+20, y+20, (1, 1, 1))  # vertical line
+       
+    if score == 22:
+        draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+        draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+        draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+        draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+
+        draw_line(x + 20, y, x + 30, y, (1, 1, 1))  # bottom
+        draw_line(x + 20, y, x + 20, y + 10, (1, 1, 1))  # bottom left
+        draw_line(x + 30, y + 10, x + 30, y + 20, (1, 1, 1))  # top right
+        draw_line(x + 20, y + 20, x + 30, y + 20, (1, 1, 1))  # top
+        draw_line(x + 20, y + 10, x + 30, y + 10, (1, 1, 1))  # middle
+    if score == 23:
+        draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+        draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+        draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+        draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+
+        draw_line(x + 20, y, x + 30, y, (1, 1, 1))  # bottom
+        draw_line(x + 20, y + 10, x + 30, y + 10, (1, 1, 1))  # middle
+        draw_line(x + 20, y + 20, x + 30, y + 20, (1, 1, 1))  # top
+        draw_line(x + 30, y, x + 30, y + 20, (1, 1, 1))  # right
+    if score == 24:
+        # Draw the "1"
+        draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+        draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+        draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+        draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+
+        draw_line(x + 30, y, x + 30, y + 10, (1, 1, 1))  # bottom right
+        draw_line(x + 20, y + 10, x + 20, y + 20, (1, 1, 1))  # top left
+        draw_line(x + 30, y + 10, x + 30, y + 20, (1, 1, 1))  # top right
+        draw_line(x + 20, y + 10, x + 30, y + 10, (1, 1, 1))  # middle
+    if score == 25:
+        draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+        draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+        draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+        draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+
+        draw_line(x+20, y, x + 30, y, (1, 1, 1)) #bottom
+        draw_line(x+30,  y, x+30, y+10, (1, 1, 1))#bottom right
+        draw_line(x+20, y+10, x+20, y+20, (1, 1, 1))#top left 
+        draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
+        draw_line(x+20, y+10, x+30, y+10, (1, 1, 1))#middle
+    if score == 26:
+        draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+        draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+        draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+        draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+
+        draw_line(x+20, y, x + 30, y, (1, 1, 1)) #bottom
+        draw_line(x+20, y, x+20, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+30,  y, x+30, y+10, (1, 1, 1))#bottom right
+        draw_line(x+20, y+10, x+20, y+20, (1, 1, 1))#top left
+        draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
+        draw_line(x+20, y+10, x+30, y+10, (1, 1, 1))#middle
+    if score == 27:
+        draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+        draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+        draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+        draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+
+        draw_line(x+30,  y, x+30, y+10, (1, 1, 1))#bottom right
+        draw_line(x+30, y+10, x+30, y+20, (1, 1, 1))#top right
+        draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
+    if score == 28:
+        draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+        draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+        draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+        draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+
+        draw_line(x+20, y, x + 30, y, (1, 1, 1)) #bottom
+        draw_line(x+20, y, x+20, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+30,  y, x+30, y+10, (1, 1, 1))#bottom right
+        draw_line(x+20, y+10, x+20, y+20, (1, 1, 1))#top left
+        draw_line(x+30, y+10, x+30, y+20, (1, 1, 1))#top right
+        draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
+        draw_line(x+20, y+10, x+30, y+10, (1, 1, 1))#middle
+    
+    if score == 29:
+        draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+        draw_line(x, y, x, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+        draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+        draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+
+        draw_line(x+20, y, x + 30, y, (1, 1, 1)) #bottom
+        draw_line(x+30,  y, x+30, y+10, (1, 1, 1))#bottom right
+        draw_line(x+20, y+10, x+20, y+20, (1, 1, 1))#top left
+        draw_line(x+30, y+10, x+30, y+20, (1, 1, 1))#top right
+        draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
+        draw_line(x+20, y+10, x+30, y+10, (1, 1, 1))#middle
+    if score == 30:
+        draw_line(x, y, x + 10, y, (1, 1, 1)) #bottom
+        draw_line(x+10,  y, x+10, y+10, (1, 1, 1))#bottom right
+        draw_line(x+10, y+10, x+10, y+20, (1, 1, 1))#top right
+        draw_line(x, y+20, x+10, y+20, (1, 1, 1))#top
+        draw_line(x, y+10, x+10, y+10, (1, 1, 1))#middle
+
+        draw_line(x+20, y, x + 30, y, (1, 1, 1)) #bottom
+        draw_line(x+20, y, x+20, y + 10, (1, 1, 1)) #bottom left
+        draw_line(x+30,  y, x+30, y+10, (1, 1, 1))#bottom right
+        draw_line(x+20, y+10, x+20, y+20, (1, 1, 1))#top left
+        draw_line(x+30, y+10, x+30, y+20, (1, 1, 1))#top right
+        draw_line(x+20, y+20, x+30, y+20, (1, 1, 1))#top
         
+
 
 
 
@@ -486,7 +606,8 @@ def update_falling_squares(falling_squares):
 
         # Check for collision with the catcher
         if catchbox.collides_with(AABB(square['x'], square['y'], 20, 20)) and not catcher_caught_square_this_cycle:
-            print("Catcher caught a falling square!")
+            print("Catcher caught a power-up!")
+            print('increase width')
             catchbox.increase_width(20)  # Increase the width permanently
             original_catcher_width = catchbox.w  # Update the original catcher width
             catcher_caught_square_this_cycle = True  # Set the flag to True
@@ -659,7 +780,7 @@ def display():
         for falling_diamond in falling_diamonds:
             # Check for collision with the catcher
             if catchbox.collides_with(AABB(falling_diamond['x'] - 20, falling_diamond['y'], 40, 20)):
-                print("Game Over - Catcher caught a falling diamond!")
+                print("Game Over - Catcher caught a falling bug!")
                 game_over = True
 
         # Remove diamonds that have fallen below the lower boundary
@@ -682,7 +803,7 @@ def display():
             if ball_color == catcher_color:
                 catcher_color = random.choice([color for color in color_set if color != catcher_color])
             else:
-                print("Game Over - Ball went beyond the lower boundary!")
+                print("Game Over - Ball went beyond the boundary!")
                 game_over = True
 
         if catchbox.collides_with_catcher(ball_x, ball_y, catchbox):
@@ -697,7 +818,7 @@ def display():
                 score += 1
                 
             else:
-                print("Game Over - Catcher collided with a ball of different color!")
+                print("Game Over - Catcher caught a ball of different color!")
                 game_over = True
 
         update_falling_diamonds(falling_diamonds)
